@@ -157,3 +157,12 @@ div{
 .operator:active{
      border: solid 1.5px rgb(80, 80, 80);
 }
+.number:active{
+     background-color: rgb(158,158,167);
+}
+.light-gray:active{
+     background-color: rgb(123,126,128);
+}
+.operator:active{
+     background-color: rgb(192,129,46);
+}
