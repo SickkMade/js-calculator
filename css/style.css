@@ -95,11 +95,12 @@ div{
 
      font-size:3rem;
      display:flex;
-     justify-content:space-between;
+     justify-content:end;
      align-items:end;
-     padding: 6px 16px 0 5px;
+     padding-right:16px;
 }
 #calculator{
+     position:relative;
      width:230px;
      height:318px;
      display:flex;
@@ -118,6 +119,9 @@ div{
      border-bottom-right-radius: 10px;
 }
 #title-bar-buttons{
+     position:absolute;
+     top:6px;
+     left:5px;
      width:55px;
      height:13px;
      align-self:start;
@@ -149,4 +153,7 @@ div{
      background-color:rgb(98,197,84);
      font-size:13px;
      padding-bottom:0;
+}
+.operator:active{
+     border: solid 1.5px rgb(80, 80, 80);
 }

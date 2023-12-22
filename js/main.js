@@ -6,27 +6,31 @@ let percent = document.getElementById('percent');
 let output = '';
 let hasDecimal = false;
 
-let num1 = ''; //when doing math 1st number being opepranded against
+let cachedOutput = '';
+let cachedType = '';
+
 let equals = document.getElementById('equals');
 
-let multiply = document.getElementById('multiply');
+let operators = document.querySelectorAll('.operator');
+
+operators.forEach(function(operator){
+    operator.addEventListener('click',function(){
+        makeOperation(output, operator.textContent);
+        output = ''; //clears output but doesnt update yet
+    })
+})
 
 equals.addEventListener('click', function(){
-
+    makeOperation(output, '');
+    hasDecimal = false;
+    cachedOutput = '';
+    cachedType = '';
 })
 
 numbers.forEach(function(number){
     number.addEventListener('click',function(){
         addToOutputScreen(number.textContent);
     })
-})
-
-multiply.addEventListener('click', function(){
-    if(num1 == '')
-        num1 = output;
-    else
-        output
-    output = ''; //dont update counter
 })
 
 percent.addEventListener('click', function(){
@@ -36,11 +40,24 @@ percent.addEventListener('click', function(){
 clear.addEventListener('click', function(){
     setOutputScreen(0);
     hasDecimal = false;
+    cachedOutput = '';
+    cachedType = '';
 })
 
 operandChange.addEventListener('click', function(){
     multiplyOutputScreen(-1);
 })
+
+function makeOperation(num, type){
+    if(cachedOutput == ''){
+        cachedOutput = num;
+        cachedType = type;
+        return;
+    }
+    cachedOutput = calculate(cachedType, cachedOutput, num);
+    setOutputScreen(cachedOutput);
+    cachedType = type;
+}
 
 function setOutputScreen(num){
     output = num;
@@ -66,4 +83,18 @@ function addToOutputScreen(num){ //this sucks balls fix pls
 
 function displayOutputScreen(){
     outputScreen.textContent = output;
+}
+
+const operations = {
+    '+': (num1, num2) => Number(num1) + Number(num2),
+    '-': (num1, num2) => num1 - num2,
+    '*': (num1, num2) => num1 * num2,
+    '/': (num1, num2) => num2 !== 0 ? num1 / num2 : 'Error: Division by zero'
+};
+
+function calculate(operation, num1, num2) {
+    if (operation in operations) {
+        return operations[operation](num1, num2);
+    }
+    return 'Invalid operation';
 }
