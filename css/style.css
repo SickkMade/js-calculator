@@ -48,6 +48,11 @@ body {
      align-items:center;
 
      height:100dvh;
+
+     -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Standard syntax */
 }
 
 
@@ -98,6 +103,7 @@ div{
      justify-content:end;
      align-items:end;
      padding-right:16px;
+     
 }
 #calculator{
      position:relative;
