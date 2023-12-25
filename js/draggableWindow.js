@@ -7,7 +7,7 @@ let currentWindow = null;
 let isMouseDown = false;
 
 windows.forEach(function(dWindow){
-    dWindow.addEventListener('mousedown', function(e){
+    dWindow.querySelector('#output-screen').addEventListener('mousedown', function(e){
 
         if(dWindow.style.top == ''){
             dWindow.style.left = '0px';
